@@ -19,9 +19,9 @@ export default function Hero() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-blue-600 font-semibold text-lg mb-3 tracking-wide uppercase"
+          className="text-blue-600 font-semibold text-xl mb-3 tracking-wide uppercase"
         >
-          Welcome to Maamaar
+          Welcome to CallVerse Global
         </motion.p>
 
         {/* Heading */}

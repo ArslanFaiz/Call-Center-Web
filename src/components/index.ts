@@ -1,4 +1,6 @@
-export {default as Header} from './header'
+export {default as Header} from './layout/header'
+export {default as Footer} from './layout/footer'
+export {default as Layout} from './layout/layout'
 export {Alert} from './ui/alert'
 export {Avatar} from './ui/avatar'
 export {Badge} from './ui/badge'

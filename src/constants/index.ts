@@ -72,3 +72,28 @@ export const features: FeatureItem[] = [
       "Comprehensive quality assurance monitoring for all your call and booking interactions.",
   },
 ]
+export const services = [
+    {
+      title: 'Planning & Briefing',
+      icon: '📋',
+      description:'Delivering excellence through innovation and strategy.'
+    },
+    {
+      title: 'Execution',
+      icon: '📞',
+      description:'Delivering excellence through innovation and strategy.'
+    },
+    {
+      title: 'Evaluation',
+      icon: '📊',
+      description:'Delivering excellence through innovation and strategy.'
+
+    }
+  ]
+  export const navItems = [
+    { name: "HOME", path: "/" },
+    { name: "SERVICES", path: "/services" },
+    { name: "ABOUT", path: "/about" },
+    { name: "PORTFOLIO", path: "/portfolio" },
+    { name: "BLOG", path: "/blog" },
+  ]
