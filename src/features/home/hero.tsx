@@ -1,9 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { Button } from "../../components/ui/button"
+import { NavLink } from "react-router-dom"
 
 export default function Hero() {
+  const [showInfo, setShowInfo] = useState(false)
+
   return (
     <section className="relative py-28 px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
       {/* Background Decorative Elements */}
@@ -54,16 +58,41 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           className="flex flex-col sm:flex-row justify-center items-center gap-4"
         >
-          <Button className="bg-gradient-to-r from-blue-600 to-teal-400 text-white font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
-            Get Started
-          </Button>
+          <NavLink to={"/contact"}>
+            <Button className="bg-gradient-to-r cursor-pointer from-blue-600 to-teal-400 text-white font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
+              Get Started
+            </Button>
+          </NavLink>
+
           <Button
             variant="outline"
-            className="border-2 border-blue-500 text-blue-600 font-semibold px-8 py-4 rounded-full hover:bg-blue-50 transition"
+            onClick={() => setShowInfo(!showInfo)}
+            className="border-2 border-blue-500 cursor-pointer text-blue-600 font-semibold px-8 py-4 rounded-full hover:bg-blue-100 hover:text-blue-700 hover:border-blue-600 transition-all duration-300"
           >
             Learn More
           </Button>
         </motion.div>
+
+        {/* Instruction Box */}
+        {showInfo && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-10 max-w-2xl mx-auto bg-white/80 backdrop-blur-sm border border-blue-100 shadow-md rounded-2xl p-6 text-gray-700"
+          >
+            <h3 className="text-xl font-semibold text-blue-600 mb-3">
+              What We Offer at CallVerse Global
+            </h3>
+            <ul className="text-left list-disc list-inside space-y-2">
+              <li>📞 24/7 call handling by professional agents.</li>
+              <li>📅 Appointment scheduling and follow-ups.</li>
+              <li>💬 Real-time updates and CRM integration.</li>
+              <li>📈 Performance reports and analytics insights.</li>
+              <li>🤝 Dedicated team for lead conversion and client support.</li>
+            </ul>
+          </motion.div>
+        )}
       </div>
     </section>
   )

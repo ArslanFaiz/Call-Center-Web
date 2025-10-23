@@ -21,7 +21,7 @@ export default function Features() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">
+          <p className="text-blue-600 font-semibold text-lg uppercase tracking-wider mb-3">
             Our Features
           </p>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">

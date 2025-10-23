@@ -107,7 +107,7 @@ export default function Services() {
           viewport={{ once: true }}
           className="space-y-8 text-center lg:text-left"
         >
-          <p className="text-lime-400 font-semibold tracking-widest text-sm uppercase">Our Services</p>
+          <p className="text-lime-400 font-semibold tracking-widest text-lg uppercase">Our Services</p>
           <h2 className="text-5xl lg:text-6xl font-bold leading-tight">
             We Only Provide <br />
             <span className="text-lime-400">Individual Bookers</span>

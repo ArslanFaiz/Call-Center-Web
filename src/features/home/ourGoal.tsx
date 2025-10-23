@@ -46,7 +46,7 @@ export default function OurGoal() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-yellow-300 font-semibold text-sm tracking-widest mb-3">
+          <p className="text-yellow-300 font-semibold text-lg tracking-widest mb-3">
             OUR GOAL
           </p>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">

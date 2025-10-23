@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Logo Section */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center shadow-md">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center shadow-md">
                 <span className="text-white font-extrabold text-xl">CG</span>
               </div>
               <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent tracking-wide">
@@ -44,19 +44,19 @@ export default function Footer() {
           {/* Social Icons */}
           <div className="flex gap-5">
             <a
-              href="#"
+              href="https://www.facebook.com"
               className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-transform transform hover:-translate-y-1 hover:scale-105 shadow-md"
             >
               <Facebook size={20} />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com"
               className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-transform transform hover:-translate-y-1 hover:scale-105 shadow-md"
             >
               <Instagram size={20} />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com"
               className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-transform transform hover:-translate-y-1 hover:scale-105 shadow-md"
             >
               <Linkedin size={20} />

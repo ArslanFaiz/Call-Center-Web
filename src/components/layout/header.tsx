@@ -26,30 +26,47 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-10">
-          {navItems.map((item, i) => (
-            <NavLink
-              key={i}
-              to={item.path}
-              className={({ isActive }) =>
-                `relative font-semibold transition ${isActive ? activeClass : "text-gray-800"} hover:text-blue-600`
-              }
-            >
-              {item.name}
-              <span className="absolute left-0 bottom-[-3px] w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full hover:w-full"></span>
-            </NavLink>
-          ))}
-          <div className="flex items-center gap-1 cursor-pointer group">
-            <span className="text-gray-800 font-semibold group-hover:text-blue-600 transition">
-              MORE
-            </span>
-            <ChevronDown className="w-4 h-4 text-gray-800 group-hover:text-blue-600 transition" />
-          </div>
-        </nav>
+<nav className="hidden md:flex items-center gap-10">
+  {navItems.map((item, i) => (
+    <NavLink
+      key={i}
+      to={item.path}
+      className={({ isActive }) =>
+        `group relative font-semibold transition-colors duration-100 ${
+          isActive ? "text-blue-600" : "text-gray-800"
+        } hover:text-blue-600`
+      }
+    >
+      {item.name}
+      <span
+        className={`
+          absolute left-0 bottom-[-3px] h-[2px] bg-blue-600 transition-all duration-300
+          ${"group-hover:w-full"} 
+          ${"w-0"}
+          ${"rounded-full"}
+          ${"opacity-0 group-hover:opacity-100"}
+          ${"transition-[width,opacity]"}
+          ${"ease-in-out"}
+          ${
+            // keep underline when active
+            "group-[.text-blue-600]:w-full group-[.text-blue-600]:opacity-100"
+          }
+        `}
+      ></span>
+    </NavLink>
+  ))}
+  <div className="flex items-center gap-1 cursor-pointer group">
+    <span className="text-gray-800 font-semibold group-hover:text-blue-600 transition">
+      MORE
+    </span>
+    <ChevronDown className="w-4 h-4 text-gray-800 group-hover:text-blue-600 transition" />
+  </div>
+</nav>
+
 
         {/* Contact Button (Linked) */}
         <NavLink to="/contact">
-          <Button className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
+          <Button className="hidden sm:inline-flex cursor-pointer bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
             CONTACT
           </Button>
         </NavLink>

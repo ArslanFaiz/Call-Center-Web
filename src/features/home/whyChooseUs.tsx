@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
           className="space-y-10"
         >
           <div>
-            <p className="text-lime-500 font-semibold text-sm tracking-wider mb-4 uppercase">Why Choose Us</p>
+            <p className="text-lime-500 font-semibold text-lg tracking-wider mb-4 uppercase">Why Choose Us</p>
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               We Are <span className="text-blue-600">Focused</span> On <br />
               Your Success!
