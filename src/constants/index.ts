@@ -1,27 +1,27 @@
-
-interface FeatureItem {
-  icon: string
-  title: string
-  description: string
-}
 import { ThumbsUp, Clock, TrendingUp } from "lucide-react"
 import { Phone, Bell, MessageSquare } from "lucide-react"
+import { Calendar, Zap, Users, Target,} from "lucide-react"
+
  
  export const feature = [
     {
       icon: ThumbsUp,
       title: "Save Time And Money",
       highlight: true,
+      description:'We ensure efficiency and high-quality outcomes across every booking.'
     },
     {
       icon: Clock,
       title: "24/7 Consultant Availability",
       highlight: false,
+      description:'We ensure efficiency and high-quality outcomes across every booking.'
+
     },
     {
       icon: TrendingUp,
       title: "Scale Your Business",
       highlight: false,
+      description:'We ensure efficiency and high-quality outcomes across every booking.'
     },
   ]
 
@@ -52,26 +52,43 @@ export const centerCards = [
     },
   ]
   
-export const features: FeatureItem[] = [
+export const features = [
   {
-    icon: "🌐",
-    title: "Multi Language Support",
-    description:
-      "Support your customers in their preferred language with our multilingual booking system.",
-  },
-  {
-    icon: "👔",
-    title: "Professional Bookers",
-    description:
-      "Our trained and experienced team ensures professional handling of all your bookings.",
-  },
-  {
-    icon: "📊",
     title: "QA Monitoring",
     description:
-      "Comprehensive quality assurance monitoring for all your call and booking interactions.",
+      "Track and evaluate every call for quality assurance, ensuring top-tier customer experience across all touchpoints.",
+    icon: "🎧",
+    image: "/assets/qa.jpg", // 👈 Add your custom image here
+    instructions: [
+      "Easily review call recordings and identify areas for agent improvement.",
+      "Generate automated quality reports to maintain consistent service standards."
+    ]
   },
+  {
+    title: "Professional Bookers",
+    description:
+      "Empower your booking agents with real-time data and AI-enhanced scheduling tools.",
+    icon: "📅",
+    image: "/assets/customer-service-representatives-with-headsets-wor.jpg", // 👈 Custom image
+    instructions: [
+      "Book appointments faster with AI-assisted scheduling and real-time updates.",
+      "Keep your calendar organized while maximizing customer engagement."
+    ]
+  },
+  {
+    title: "Customer Insights",
+    description:
+      "Turn every interaction into valuable analytics for smarter business decisions.",
+    icon: "📊",
+    image: "/assets/customer-insight.jpg",
+    instructions: [
+      "Analyze customer behavior and team performance through smart analytics.",
+      "Use data-driven insights to improve satisfaction and boost conversions."
+    ]
+  }
 ]
+
+
 export const services = [
     {
       title: 'Planning & Briefing',
@@ -92,8 +109,40 @@ export const services = [
   ]
   export const navItems = [
     { name: "HOME", path: "/" },
-    { name: "SERVICES", path: "/services" },
+    { name: "SERVICES" },
     { name: "ABOUT", path: "/about" },
     { name: "PORTFOLIO", path: "/portfolio" },
     { name: "BLOG", path: "/blog" },
+  ]
+export const benefits = [
+    {
+      icon: Calendar,
+      title: "Flexible Scheduling",
+      description: "30-40 hours per week with flexible working hours up to 8 hours daily",
+    },
+    {
+      icon: Clock,
+      title: "Quick Onboarding",
+      description: "Get trained on your scripts and start booking appointments immediately",
+    },
+    {
+      icon: Zap,
+      title: "Zoom Integration",
+      description: "Seamlessly schedule video appointments across your calendar",
+    },
+    {
+      icon: Users,
+      title: "Custom Training",
+      description: "Personalized training based on your unique scripts and methods",
+    },
+    {
+      icon: Target,
+      title: "Lead Management",
+      description: "Efficient lead handling and schedule optimization",
+    },
+    {
+      icon: TrendingUp,
+      title: "Performance Tracking",
+      description: "Real-time analytics and performance metrics",
+    },
   ]

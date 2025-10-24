@@ -146,18 +146,21 @@ export default function About() {
       </section>
 
       {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="w-full h-full overflow-hidden"
-      >
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wvVfaPHYVip7ChQYwOexcqyqnSoP82.png"
-          alt="Customer service team working at desks"
-          className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
-        />
-      </motion.section>
+<motion.section
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  className="w-full overflow-hidden flex justify-center"
+>
+  <div className="max-w-6xl w-full rounded-3xl overflow-hidden shadow-lg">
+    <img
+      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wvVfaPHYVip7ChQYwOexcqyqnSoP82.png"
+      alt="Customer service team working at desks"
+      className="w-full h-auto object-cover scale-105 hover:scale-100 transition-transform duration-700"
+    />
+  </div>
+</motion.section>
+
 
       {/* Tabs Section */}
       <section className="bg-white py-20 px-6">
@@ -178,17 +181,21 @@ export default function About() {
           </div>
 
           {/* Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-20"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold text-black leading-tight mb-8 max-w-4xl mx-auto">
-              Communication Services That Elevate Your Business — Helping You
-              Reach New Heights of Success with Smart, Personalized Solutions.
-            </h1>
-          </motion.div>
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  className="text-center mb-20"
+>
+  <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-snug max-w-4xl mx-auto">
+    <span className="block text-blue-600">Communication Services That Elevate Your Business</span>
+    <span className="block mt-4 text-gray-700 font-medium text-2xl md:text-3xl">
+      Helping You Reach New Heights of Success with Smart, Personalized Solutions
+    </span>
+  </h1>
+  <div className="mt-6 w-32 h-1 mx-auto bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 rounded-full shadow-md"></div>
+</motion.div>
+
 
           {/* Statistics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">

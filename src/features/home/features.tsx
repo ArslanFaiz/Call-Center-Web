@@ -1,80 +1,123 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { features } from "../../constants"
-import { Card } from "../../components"
+
 export default function Features() {
+  // Track which feature is expanded
+const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+
+  const toggleExpand = (index: number) => {
+  setExpandedIndex(expandedIndex === index ? null : index)
+}
+
+
   return (
-    <section className="relative py-24 px-6 lg:px-10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
-      {/* Background Decorative Elements */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 py-28 px-6 lg:px-10">
+      {/* Glowing Background Blobs */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-blue-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-[-10%] left-[-5%] w-[450px] h-[450px] bg-teal-100/40 rounded-full blur-3xl"></div>
+        <div className="absolute top-[-10%] left-[10%] w-[400px] h-[400px] bg-blue-200/40 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-lime-300/30 rounded-full blur-3xl animate-pulse delay-200"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: -40 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-28"
         >
-          <p className="text-blue-600 font-semibold text-lg uppercase tracking-wider mb-3">
-            Our Features
-          </p>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
-            Gain Insights From Every Interaction
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+            Powerful Features, Seamlessly Integrated
           </h2>
-          <p className="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
-            Understand your customer performance through data-driven booking analytics, team QA reports, and live call insights.
+          <div className="mx-auto h-[4px] w-24 bg-gradient-to-r from-blue-500 to-lime-400 rounded-full mb-6"></div>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Each tool is designed to enhance your workflow, empower your team,
+            and give you full control through real-time insights.
           </p>
         </motion.div>
 
-        {/* Image Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="relative mb-20"
-        >
-          <div className="rounded-3xl overflow-hidden shadow-2xl">
-            <img
-              src="/assets/customer-service-representatives-with-headsets-wor.jpg"
-              alt="Customer service team working"
-              className="w-full h-[480px] object-cover"
-            />
-          </div>
-          <div className="absolute -top-6 -right-6 w-36 h-36 bg-gradient-to-br from-lime-400 to-blue-500 rounded-3xl -z-10 blur-lg opacity-70"></div>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-10"
-        >
+        {/* Alternating Feature Blocks */}
+        <div className="space-y-32">
           {features.map((feature, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="group p-8 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`flex flex-col lg:flex-row ${
+                index % 2 === 1 ? "lg:flex-row-reverse" : ""
+              } items-center gap-12`}
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-lime-400 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-md group-hover:scale-110 transition-transform">
-                {feature.icon}
+              {/* Image Section */}
+              <div className="w-full lg:w-1/2 relative group">
+                <div className="rounded-3xl overflow-hidden shadow-xl relative">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-[420px] object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent"></div>
+                </div>
+                <div className="absolute -top-6 -left-6 w-36 h-36 bg-gradient-to-br from-blue-500 to-lime-400 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-all duration-500"></div>
               </div>
-              <h4 className="text-2xl font-semibold text-gray-900 mb-3">
-                {feature.title}
-              </h4>
-              <p className="text-gray-600 leading-relaxed">
-                {feature.description}
-              </p>
-            </Card>
+
+              {/* Text Section */}
+              <div className="w-full lg:w-1/2">
+                <div className="mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-lime-400 text-white rounded-2xl text-3xl shadow-lg mb-6">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed text-lg">
+                    {feature.description}
+                  </p>
+                </div>
+
+                {/* Learn More Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 12 }}
+                  onClick={() => toggleExpand(index)}
+                  className="mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-lime-400 text-white font-medium shadow-md hover:shadow-lg transition-all"
+                >
+                  {expandedIndex === index ? "Hide Details ↑" : "Learn More →"}
+                </motion.button>
+
+                {/* Expanded Info Section */}
+                {expandedIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4 }}
+                    className="mt-6 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-lg text-gray-700"
+                  >
+                    <h4 className="font-semibold text-xl text-blue-600 mb-2">
+                      How It Works:
+                    </h4>
+                    <ul className="list-disc ml-6 space-y-2 text-gray-600">
+                      {feature.instructions?.map((step, i) => (
+                        <li key={i}>{step}</li>
+                      )) || (
+                        <li>
+                          Coming soon! Detailed instructions for this feature
+                          will be added shortly.
+                        </li>
+                      )}
+                    </ul>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

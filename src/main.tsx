@@ -5,10 +5,10 @@ import './index.css'
 import App from './App.tsx'
 import Layout from './components/layout/layout.tsx'
 import About from './pages/about.tsx'
-import Services from './pages/services.tsx'
-import Blog from './pages/blog.tsx'
-import Portfolio from './pages/protfolio.tsx'
 import Contact from './pages/contact.tsx'
+import BookingServices from './pages/sevices/bookingServieces.tsx'
+import RecruitingServices from './pages/sevices/recruitingServices.tsx'
+import OutSourcing from './pages/sevices/outSourcing.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,9 +17,9 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/services/booking-services" element={<BookingServices />} />
+          <Route path="/services/recruiting-services" element={<RecruitingServices />} />
+          <Route path="/services/outsourcing" element={<OutSourcing />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>
