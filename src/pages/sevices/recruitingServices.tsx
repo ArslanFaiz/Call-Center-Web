@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { CheckCircle, ArrowRight, Briefcase, Users } from "lucide-react"
+import { NavLink } from "react-router-dom"
 
 export default function RecruitingServices() {
   const responsibilities = [
@@ -163,17 +164,18 @@ export default function RecruitingServices() {
       </motion.div>
     ))}
   </motion.div>
-
+<NavLink to={"/contact"}>
   <motion.button
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: 0.3 }}
     viewport={{ once: true }}
-    className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-amber-500/50 transition-all duration-300 inline-flex items-center gap-2 group"
+    className="px-8 py-4 bg-gradient-to-r cursor-pointer from-amber-500 to-orange-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-amber-500/50 transition-all duration-300 inline-flex items-center gap-2 group"
   >
     Start Recruiting
     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
   </motion.button>
+  </NavLink>
 </motion.div>
 
 {/* Right Visual */}

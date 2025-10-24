@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Phone, Users, CheckCircle, ArrowRight } from "lucide-react"
+import { Button } from "../../components"
+import { NavLink } from "react-router-dom"
 
 export default function OutSourcing() {
   const features = [
@@ -186,13 +188,15 @@ export default function OutSourcing() {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start"
           >
-            <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-400 text-slate-900 font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 flex items-center gap-2 group">
+            <NavLink to={"/contact"}>
+            <Button className="px-8 py-4 bg-gradient-to-r cursor-pointer from-cyan-400 to-blue-400 text-slate-900 font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 flex items-center gap-2 group">
               Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300">
+            </Button>
+            </NavLink>
+            <Button className="px-8 py-4 border border-white/20 cursor-pointer text-white font-semibold rounded-full hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300">
               Learn More
-            </button>
+            </Button>
           </motion.div>
         </div>
       </section>
