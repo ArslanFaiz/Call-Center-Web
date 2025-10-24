@@ -37,7 +37,7 @@ export default function Footer() {
               </a>
             </p>
             <p className="text-gray-700">
-              Phone: <span className="text-blue-600">+92 300 1234567</span>
+              Phone: <span className="text-blue-600">+1 (416) 555-7890</span>
             </p>
           </div>
 
