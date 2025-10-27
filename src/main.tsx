@@ -9,13 +9,16 @@ import Contact from './pages/contact.tsx'
 import BookingServices from './pages/sevices/bookingServieces.tsx'
 import RecruitingServices from './pages/sevices/recruitingServices.tsx'
 import OutSourcing from './pages/sevices/outSourcing.tsx'
+import { Login, SignupForm } from './features/index.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/SignupForm" element={<SignupForm />} />
+          <Route path="/home" element={<App />} />
           <Route path="/about" element={<About />} />
           <Route path="/services/booking-services" element={<BookingServices />} />
           <Route path="/services/recruiting-services" element={<RecruitingServices />} />

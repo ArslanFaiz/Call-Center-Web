@@ -108,7 +108,7 @@ export const services = [
     }
   ]
   export const navItems = [
-    { name: "HOME", path: "/" },
+    { name: "HOME", path: "/home" },
     { name: "SERVICES" },
     { name: "ABOUT", path: "/about" },
     { name: "PORTFOLIO", path: "/portfolio" },
