@@ -1,134 +1,218 @@
-"use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { feature } from "../../constants"
+import { Card, Button } from "../../components"
 
-export default function WhyChooseUs() {
+export default function BookingSystem() {
+  const [selectedSlots, setSelectedSlots] = useState<number[]>([])
+  const [hoursRequested, setHoursRequested] = useState(4)
+
+  const timeSlots = [
+    { id: 1, time: "9:00 AM - 10:00 AM", available: 12 },
+    { id: 2, time: "10:00 AM - 11:00 AM", available: 8 },
+    { id: 3, time: "11:00 AM - 12:00 PM", available: 5 },
+    { id: 4, time: "1:00 PM - 2:00 PM", available: 15 },
+    { id: 5, time: "2:00 PM - 3:00 PM", available: 10 },
+    { id: 6, time: "3:00 PM - 4:00 PM", available: 3 },
+    { id: 7, time: "4:00 PM - 5:00 PM", available: 7 },
+  ]
+
+  const toggleSlot = (id: number) => {
+    setSelectedSlots((prev) =>
+      prev.includes(id) ? prev.filter((slot) => slot !== id) : [...prev, id]
+    )
+  }
+
+  const totalSlots = selectedSlots.reduce((sum, id) => {
+    const slot = timeSlots.find((s) => s.id === id)
+    return sum + (slot?.available || 0)
+  }, 0)
+
   return (
-    <section className="relative bg-gradient-to-b from-white via-blue-50 to-lime-50 overflow-hidden py-28 px-6 lg:px-12">
-      {/* === Background Glow Elements === */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          animate={{ x: [0, 80, -80, 0], y: [0, -40, 40, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-[10%] w-[500px] h-[500px] bg-blue-300/20 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ x: [0, -80, 80, 0], y: [0, 60, -60, 0] }}
-          transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 right-[10%] w-[600px] h-[600px] bg-lime-300/25 rounded-full blur-[150px]"
-        />
+    <section className="w-full py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-100 relative overflow-hidden">
+      {/* Floating Gradient Glow */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl animate-pulse"></div>
       </div>
 
-      {/* === Header Section === */}
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center max-w-3xl mx-auto mb-24"
-      >
-        <p className="text-blue-600 font-semibold text-lg uppercase tracking-wider mb-3">
-          Why Choose Us
-        </p>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-          We’re <span className="bg-gradient-to-r from-blue-600 to-lime-500 bg-clip-text text-transparent">
-            Committed
-          </span>{" "}
-          to Your Success
-        </h1>
-        <div className="h-[4px] w-24 bg-gradient-to-r from-blue-500 to-lime-400 rounded-full mx-auto my-6"></div>
-        <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
-          From QA monitoring to professional booking services, our expert team ensures efficiency, accuracy, and real-time performance for your business.
-        </p>
-      </motion.div>
-
-      {/* === Content Section === */}
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* ==== Left Side (Image + Floating Elements) ==== */}
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, type: "spring" }}
           viewport={{ once: true }}
-          className="relative flex justify-center"
+          className="text-center mb-16"
         >
-          {/* Main Image */}
-          <div className="relative w-full max-w-md">
-            <motion.img
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.5 }}
-              src="/assets/professional-woman-with-headset-customer-service.jpg"
-              alt="Customer Service Team"
-              className="w-full h-auto rounded-[2rem] shadow-2xl object-cover border border-white/70"
-            />
-
-            {/* Glow ring */}
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-blue-400/30 to-lime-400/30 blur-3xl -z-10"></div>
-
-            {/* Floating Badge 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -top-8 -left-8 bg-white/90 backdrop-blur-md border border-gray-200 shadow-lg rounded-xl px-4 py-2 flex items-center gap-2"
-            >
-              🏆 <span className="font-semibold text-gray-800">Award-Winning Service</span>
-            </motion.div>
-
-            {/* Floating Badge 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="absolute bottom-6 -right-10 bg-gradient-to-r from-blue-500 to-lime-400 text-white font-semibold px-5 py-3 rounded-full shadow-lg"
-            >
-              Trusted by 100+ Businesses
-            </motion.div>
-          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            You Choose When We Call
+          </h2>
+          <p className="text-xl text-slate-600">
+            Select your preferred time slots and we'll handle the rest
+          </p>
         </motion.div>
 
-        {/* ==== Right Side (Feature Cards) ==== */}
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-        >
-          {feature.map((feat, index) => {
-            const Icon = feat.icon
-            return (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Time Slot Selector */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, type: "spring" }}
+            viewport={{ once: true }}
+            className="lg:col-span-2"
+          >
+            <Card className="p-8 border border-slate-200 rounded-2xl shadow-xl bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-500">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                Available Time Slots
+              </h3>
+
+              <div className="space-y-3 mb-8">
+                {timeSlots.map((slot, i) => (
+                  <motion.button
+                    key={slot.id}
+                    onClick={() => toggleSlot(slot.id)}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, type: "spring" }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
+                    className={`w-full p-4 rounded-xl border-2 flex items-center justify-between transition-all duration-300 ${
+                      selectedSlots.includes(slot.id)
+                        ? "border-blue-600 bg-gradient-to-r from-blue-50 to-blue-100 shadow-md"
+                        : "border-slate-200 bg-white hover:border-blue-300 hover:bg-slate-50"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <motion.div
+                        animate={{
+                          scale: selectedSlots.includes(slot.id) ? 1.1 : 1,
+                        }}
+                        className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                          selectedSlots.includes(slot.id)
+                            ? "bg-blue-600 border-blue-600"
+                            : "border-slate-300"
+                        }`}
+                      >
+                        {selectedSlots.includes(slot.id) && (
+                          <span className="text-white text-sm">✓</span>
+                        )}
+                      </motion.div>
+                      <div className="text-left">
+                        <p className="font-semibold text-slate-900">
+                          {slot.time}
+                        </p>
+                        <p className="text-sm text-slate-500">
+                          {slot.available} slots available
+                        </p>
+                      </div>
+                    </div>
+                    {slot.available <= 5 && (
+                      <span className="text-xs font-bold text-orange-600 bg-orange-100/80 px-3 py-1 rounded-full">
+                        Limited
+                      </span>
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+
               <motion.div
-                key={index}
-                whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  boxShadow: "0 15px 40px rgba(56,189,248,0.2)",
-                  transition: { duration: 0.3 },
-                }}
-                className={`relative p-6 rounded-2xl border transition-all duration-300 ${
-                  feat.highlight
-                    ? "bg-gradient-to-br from-blue-600 to-lime-400 text-white border-none"
-                    : "bg-white/80 backdrop-blur-md text-gray-800 border-gray-200 hover:bg-gradient-to-br hover:from-blue-50 hover:to-lime-50"
-                }`}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                viewport={{ once: true }}
+                className="pt-6 border-t border-slate-200"
               >
-                <div
-                  className={`mb-4 w-12 h-12 flex items-center justify-center rounded-xl shadow-md ${
-                    feat.highlight
-                      ? "bg-white/20 text-white"
-                      : "bg-blue-100 text-blue-600"
-                  }`}
-                >
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-xl mb-2">{feat.title}</h3>
-                <p className="text-gray-600 text-base leading-relaxed">
-                  {feat.description || "We ensure efficiency and high-quality outcomes across every booking."}
+                <p className="text-sm text-slate-600 mb-4">
+                  Total slots selected:{" "}
+                  <span className="font-bold text-slate-900">{totalSlots}</span>
                 </p>
               </motion.div>
-            )
-          })}
-        </motion.div>
+            </Card>
+          </motion.div>
+
+          {/* Booking Summary */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, type: "spring" }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 border border-blue-200 rounded-2xl bg-gradient-to-br from-blue-50/80 to-indigo-100/70 backdrop-blur-xl shadow-xl hover:shadow-2xl sticky top-8 transition-all duration-500">
+              <h3 className="text-xl font-bold text-slate-900 mb-6">
+                Booking Summary
+              </h3>
+
+              <div className="space-y-4 mb-8">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-3">
+                    Hours Requested
+                  </label>
+                  <div className="flex items-center space-x-3">
+                    <button
+                      onClick={() =>
+                        setHoursRequested(Math.max(1, hoursRequested - 1))
+                      }
+                      className="w-10 h-10 rounded-lg border border-slate-300 flex items-center justify-center hover:bg-slate-100 transition-colors"
+                    >
+                      −
+                    </button>
+                    <span className="text-2xl font-bold text-blue-600 w-12 text-center">
+                      {hoursRequested}
+                    </span>
+                    <button
+                      onClick={() => setHoursRequested(hoursRequested + 1)}
+                      className="w-10 h-10 rounded-lg border border-slate-300 flex items-center justify-center hover:bg-slate-100 transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <motion.div
+                  className="pt-4 border-t border-blue-200"
+                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="text-sm text-slate-600 mb-2">Selected Slots</p>
+                  <p className="text-3xl font-bold text-blue-600">
+                    {selectedSlots.length}
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="pt-4 border-t border-blue-200"
+                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="text-sm text-slate-600 mb-2">
+                    Total Availability
+                  </p>
+                  <p className="text-3xl font-bold text-green-600">
+                    {totalSlots}
+                  </p>
+                </motion.div>
+              </div>
+
+              <motion.div
+                whileHover={{ scale: selectedSlots.length > 0 ? 1.02 : 1 }}
+              >
+                <Button
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50"
+                  disabled={selectedSlots.length === 0}
+                >
+                  Confirm Booking
+                </Button>
+              </motion.div>
+
+              <p className="text-xs text-slate-600 text-center mt-4">
+                System assigns available agents automatically
+              </p>
+            </Card>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -30,32 +30,42 @@ export default function SignUpForm() {
     formData.password.trim() !== "" &&
     formData.confirmPassword.trim() !== "";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
-    // ✅ Validation checks
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters long.");
-      return;
-    }
+  // ✅ Validation checks
+  if (formData.password.length < 6) {
+    setError("Password must be at least 6 characters long.");
+    return;
+  }
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match.");
+    return;
+  }
 
-    // ✅ Save data
-    localStorage.setItem(
-      "signupData",
-      JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      })
-    );
-
-    console.log("Sign up:", formData);
-    handleNavigate();
+  // ✅ Save full name + user data for HeroSection
+  const user = {
+    name: formData.fullName,
+    email: formData.email,
   };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  // (Optional) Keep signupData if you still want it
+  localStorage.setItem(
+  "signupData",
+  JSON.stringify({
+    name: formData.fullName, // add this
+    email: formData.email,
+    password: formData.password,
+  })
+);
+
+
+  console.log("Sign up:", formData);
+  handleNavigate();
+};
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
@@ -248,20 +258,6 @@ export default function SignUpForm() {
               </span>
             </div>
           </div>
-
-          {/* Google Sign Up */}
-          <button
-            type="button"
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50"
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92..."
-              />
-            </svg>
-            <span className="text-sm font-medium text-gray-800">Google</span>
-          </button>
 
           {/* Sign In Link */}
           <p className="text-center text-sm text-gray-600 mt-6">

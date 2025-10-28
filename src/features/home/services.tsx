@@ -1,133 +1,106 @@
-"use client"
-
 import { motion } from "framer-motion"
-import { centerCards, leftCards } from "../../constants"
-import { ArrowRight } from "lucide-react"
+import { Card } from "../../components"
 
-export default function Services() {
- return (
-    <section className="relative overflow-hidden min-h-screen flex items-center px-6 py-24 bg-[#0a0f1f] text-white">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1f] via-[#111a33] to-[#1b294f]" />
-        <motion.div
-          animate={{ x: [0, 100, -100, 0], y: [0, -80, 80, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-40 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ x: [0, -80, 80, 0], y: [0, 60, -60, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-lime-400/15 rounded-full blur-[140px]"
-        />
-      </div>
+export default function DashboardPreview() {
+  const metrics = [
+    { label: "Total Calls", value: "1,275", icon: "📞", color: "from-blue-500 to-blue-600" },
+    { label: "Appointment Rate", value: "43%", icon: "✓", color: "from-green-500 to-green-600" },
+    { label: "Confirmed Meetings", value: "320", icon: "📅", color: "from-purple-500 to-purple-600" },
+    { label: "Avg Handle Time", value: "3m 42s", icon: "⏱️", color: "from-orange-500 to-orange-600" },
+  ]
 
-      {/* Foreground Content */}
-      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-3 gap-10 items-center">
-        {/* Left Cards */}
-        <div className="space-y-8">
-          {leftCards.map((card, i) => {
-            const Icon = card.icon
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{
-                  y: -6,
-                  scale: 1.02,
-                  boxShadow: "0 6px 25px rgba(164, 255, 120, 0.3)",
-                  transition: { duration: 0.15, ease: "easeOut" }, // ⚡ faster hover response
-                }}
-                className={`relative p-8 rounded-2xl backdrop-blur-md border transition-all duration-150 ease-out cursor-pointer
-                  ${
-                    card.highlight
-                      ? "bg-gradient-to-r from-lime-400/90 to-lime-300/80 text-gray-900 border-lime-200"
-                      : "bg-white/10 border-white/20 text-white"
-                  }`}
-              >
-                <div className="flex items-start gap-5">
-                  <div
-                    className={`p-4 rounded-xl shadow-md ${
-                      card.highlight ? "bg-blue-700 text-white" : "bg-lime-400/80 text-blue-800"
-                    }`}
-                  >
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                    <p className="text-white/80">{card.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
+  return (
+    <section className="relative w-full py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
+      {/* Floating radial gradient accents */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-purple-500/20 blur-3xl rounded-full translate-x-1/3 translate-y-1/3"></div>
 
-        {/* Center Cards */}
-        <div className="space-y-8">
-          {centerCards.map((card, i) => {
-            const Icon = card.icon
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                viewport={{ once: true }}
-                whileHover={{
-                  y: -6,
-                  scale: 1.02,
-                  boxShadow: "0 6px 25px rgba(80, 200, 255, 0.3)",
-                  transition: { duration: 0.15, ease: "easeOut" },
-                }}
-                className="relative p-8 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md text-white transition-all duration-150 ease-out cursor-pointer"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="p-4 bg-lime-400/80 rounded-xl shadow-md">
-                    <Icon className="w-6 h-6 text-blue-800" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                    <p className="text-white/80">{card.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Right Column - Text */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="space-y-8 text-center lg:text-left"
-        >
-          <p className="text-lime-400 font-semibold tracking-widest text-lg uppercase">Our Services</p>
-          <h2 className="text-5xl lg:text-6xl font-bold leading-tight">
-            We Only Provide <br />
-            <span className="text-lime-400">Individual Bookers</span>
-          </h2>
-          <p className="text-white/80 text-lg leading-relaxed">
-            Bookers and Appointment Setters for Insurance Sales Agents.
-          </p>
-
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 20px rgba(164, 255, 120, 0.3)",
-              transition: { duration: 0.15, ease: "easeOut" },
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-lime-400 text-gray-900 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-lime-300 transition duration-150"
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, type: "spring" }}
+            viewport={{ once: true }}
+            className="text-4xl lg:text-5xl font-bold text-slate-100 mb-4"
           >
-            Explore Services
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
+            Interactive Dashboard Preview
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-xl text-slate-400"
+          >
+            Real-time metrics updated nightly
+          </motion.p>
+        </div>
+
+        {/* Main dashboard card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, type: "spring" }}
+          viewport={{ once: true }}
+        >
+          <Card className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800 px-8 py-6">
+              <h3 className="text-white text-2xl font-bold">Performance Dashboard</h3>
+              <p className="text-slate-300 text-sm mt-1">Updated at end of business day</p>
+            </div>
+
+            <div className="p-8">
+              {/* Metrics Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {metrics.map((metric, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15, type: "spring" }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                    className="space-y-3"
+                  >
+                    <div
+                      className={`bg-gradient-to-br ${metric.color} rounded-xl p-5 text-white shadow-md hover:shadow-xl transition-all duration-300`}
+                    >
+                      <div className="text-4xl mb-2">{metric.icon}</div>
+                      <div className="text-3xl font-bold">{metric.value}</div>
+                    </div>
+                    <p className="text-slate-600 font-medium text-sm text-center">{metric.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Chart visualization */}
+              <div className="mt-12 pt-8 border-t border-slate-200">
+                <h4 className="text-slate-900 font-semibold mb-6">Calls Booked This Week</h4>
+                <div className="flex items-end justify-between h-48 gap-2">
+                  {[65, 78, 92, 88, 95, 110, 125].map((value, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ scaleY: 0 }}
+                      whileInView={{ scaleY: (value / 125) }}
+                      transition={{ duration: 0.8, delay: index * 0.1, type: "spring" }}
+                      viewport={{ once: true }}
+                      className="flex-1 flex flex-col items-center origin-bottom"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-xl shadow-lg"
+                        style={{ height: `${(value / 125) * 100}%` }}
+                      ></motion.div>
+                      <span className="text-xs text-slate-500 mt-2 font-medium">
+                        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][index]}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
         </motion.div>
       </div>
     </section>

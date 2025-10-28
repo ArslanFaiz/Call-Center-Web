@@ -10,6 +10,7 @@ import BookingServices from './pages/sevices/bookingServieces.tsx'
 import RecruitingServices from './pages/sevices/recruitingServices.tsx'
 import OutSourcing from './pages/sevices/outSourcing.tsx'
 import { Login, SignupForm } from './features/index.ts'
+import CallBooking from './pages/callBooking.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/services/recruiting-services" element={<RecruitingServices />} />
           <Route path="/services/outsourcing" element={<OutSourcing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/CallBooking" element={<CallBooking />} />
         </Routes>
       </Layout>
     </BrowserRouter>

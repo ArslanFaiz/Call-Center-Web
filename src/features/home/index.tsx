@@ -1,7 +1,6 @@
-import CTA from "./cta"
+
 import Features from "./features"
 import Hero from "./hero"
-import OurGoal from "./ourGoal"
 import Services from "./services"
 import WhyChooseUs from "./whyChooseUs"
 
@@ -12,8 +11,6 @@ const Home = () => {
       <Features />
       <Services/>
       <WhyChooseUs/>
-      <OurGoal/>
-      <CTA/>
       </>
   )
 }
