@@ -2,7 +2,7 @@
 import Features from "./features"
 import Hero from "./hero"
 import Services from "./services"
-import WhyChooseUs from "./whyChooseUs"
+// import WhyChooseUs from "./whyChooseUs"
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       <Hero />
       <Features />
       <Services/>
-      <WhyChooseUs/>
+      {/* <WhyChooseUs/> */}
       </>
   )
 }
