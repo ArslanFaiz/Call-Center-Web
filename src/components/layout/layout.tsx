@@ -11,7 +11,7 @@ type LayoutProps ={
 export default function Layout ({children}:LayoutProps){
   const location = useLocation();
 
-  const hideLayoutRoutes = ['/','/SignupForm','/CallBooking'];
+  const hideLayoutRoutes = ['/','/SignupForm'];
 
   const hideLayout = hideLayoutRoutes.includes(location.pathname)
     return (

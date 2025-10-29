@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { Menu, X, ChevronDown, User, LogOut } from "lucide-react"
 import { Button } from "../ui/button"
@@ -16,6 +16,20 @@ export default function Header() {
   const [profileOpen, setProfileOpen] = useState(false) // Profile dropdown
   const [user, setUser] = useState<UserType | null>(null)
   const activeClass = "text-blue-600"
+
+  const profileRef = useRef<HTMLDivElement>(null)
+
+  // 🔹 Close profile dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setProfileOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   // Load user from localStorage
   useEffect(() => {
@@ -87,7 +101,9 @@ export default function Header() {
                 key={i}
                 to={item.path ?? "#"}
                 className={({ isActive }) =>
-                  `relative font-semibold transition-colors duration-300 ${isActive ? activeClass : "text-gray-800"} hover:text-blue-600`
+                  `relative font-semibold transition-colors duration-300 ${
+                    isActive ? activeClass : "text-gray-800"
+                  } hover:text-blue-600`
                 }
               >
                 {item.name}
@@ -108,34 +124,33 @@ export default function Header() {
           {/* Spacer to push user icon to the far right */}
           <div className="flex-1"></div>
 
-          {/* User Icon */}
+          {/* User Icon with outside click close */}
           {user && (
-  <div className="relative flex items-center gap-2">
-    <button
-      onClick={() => setProfileOpen(!profileOpen)}
-      className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-md"
-    >
-      <User className="w-5 h-5 text-white cursor-pointer" />
-    </button>
-    <span className="text-gray-800 font-medium">{user.name}</span>
+            <div ref={profileRef} className="relative flex items-center gap-2">
+              <button
+                onClick={() => setProfileOpen(!profileOpen)}
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-md"
+              >
+                <User className="w-5 h-5 text-white cursor-pointer" />
+              </button>
+              <span className="text-gray-800 font-medium">{user.name}</span>
 
-    {profileOpen && (
-<div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-        <Link to={'/'}>
-        <button
-          onClick={handleLogout}
-          className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors"
-        >
-          <div className="flex items-center gap-2">
-            <LogOut className="w-4 h-4" /> Logout
-          </div>
-        </button>
-        </Link>
-      </div>
-    )}
-  </div>
-)}
-
+              {profileOpen && (
+                <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                  <Link to={"/"}>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 cursor-pointer py-2 text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <LogOut className="w-4 h-4" /> Logout
+                      </div>
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -179,7 +194,9 @@ export default function Header() {
                 key={i}
                 to={item.path ?? "#"}
                 className={({ isActive }) =>
-                  `font-medium transition ${isActive ? activeClass : "text-gray-800"} hover:text-blue-600`
+                  `font-medium transition ${
+                    isActive ? activeClass : "text-gray-800"
+                  } hover:text-blue-600`
                 }
                 onClick={() => setMobileOpen(false)}
               >
@@ -188,45 +205,28 @@ export default function Header() {
             )
           )}
 
-          {/* Mobile Contact Button */}
-          <NavLink to="/contact" onClick={() => setMobileOpen(false)}>
-            <Button className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-transform">
-              CONTACT
-            </Button>
-          </NavLink>
+          {/* ✅ Contact & Logout side-by-side */}
+          <div className="flex items-center justify-between w-full">
+            <NavLink to="/contact" onClick={() => setMobileOpen(false)}>
+              <Button className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-transform">
+                CONTACT
+              </Button>
+            </NavLink>
 
-          {/* Mobile User Icon */}
-{user && (
-  <div className="relative flex items-center gap-2 mt-4">
-    <button
-      onClick={() => setProfileOpen(!profileOpen)}
-      className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-md"
-    >
-      <User className="w-5 h-5 text-white cursor-pointer" />
-    </button>
-    <span className="text-gray-800 font-medium">{user.name}</span>
-
-    {profileOpen && (
-      <div className="absolute left-0 mt-24 w-40 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-        <Link to ={'/'}>
-        <button
-          onClick={() => {
-            handleLogout();
-            setMobileOpen(false);
-          }}
-          className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors"
-        >
-          <div className="flex items-center gap-2">
-            <LogOut className="w-4 h-4" /> Logout
+            {user && (
+              <Link to={"/"}>
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setMobileOpen(false)
+                  }}
+                  className="flex items-center gap-2  text-red-600 hover:bg-red-50 rounded-lg px-4 py-2 transition-colors"
+                >
+                  <LogOut className="w-5 h-5" /> Logout
+                </button>
+              </Link>
+            )}
           </div>
-        </button>
-        </Link>
-      </div>
-    )}
-  </div>
-)}
-
-
         </div>
       )}
     </header>

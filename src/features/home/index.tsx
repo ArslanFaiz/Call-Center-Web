@@ -1,14 +1,14 @@
 
-import Features from "./features"
 import Hero from "./hero"
-import Services from "./services"
+import HowItWorks from "./how-it-works"
+import Services from "./dashvoard-preview"
 // import WhyChooseUs from "./whyChooseUs"
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <Features />
+      <HowItWorks />
       <Services/>
       {/* <WhyChooseUs/> */}
       </>

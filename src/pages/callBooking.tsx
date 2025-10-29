@@ -1,8 +1,6 @@
-
 import { useState } from "react"
 import { Button } from "../components"
 import { ChevronLeft, Phone, Calendar, TrendingUp, Clock } from "lucide-react"
-import { Link } from "react-router-dom"
 
 export default function CallBooking() {
   const [selectedDate, setSelectedDate] = useState<string>("")
@@ -34,20 +32,20 @@ export default function CallBooking() {
 
   return (
     <main className="w-full min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link to="/home" className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors">
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <button
+            onClick={() => window.history.back()}
+            className="flex items-center mt-15 cursor-pointer space-x-2 text-slate-300 hover:text-white transition-colors font-medium"
+          >
             <ChevronLeft className="w-5 h-5" />
             <span>Back to Home</span>
-          </Link>
-          <h1 className="text-2xl font-bold text-white">Book Your Calls</h1>
-          <div className="w-20"></div>
+          </button>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Grid with Booking Form and Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left - Booking Form */}
           <div className="lg:col-span-2">
