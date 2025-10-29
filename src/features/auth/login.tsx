@@ -226,20 +226,6 @@ export default function Login() {
               </span>
             </div>
           </div>
-
-          {/* Google Login */}
-          <Button
-            type="button"
-            className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition"
-          >
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google"
-              className="w-5 h-5"
-            />
-            Google
-          </Button>
-
           <p className="text-center text-sm text-gray-600 mt-6">
             Don’t have an account?{" "}
             <Link to="/SignupForm" className="text-blue-700 hover:underline">
