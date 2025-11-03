@@ -17,9 +17,9 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/SignupForm" element={<SignupForm />} />
-          <Route path="/home" element={<App />} />
+          <Route path="/" element={<App />} />
           <Route path="/about" element={<About />} />
           <Route path="/services/booking-services" element={<BookingServices />} />
           <Route path="/services/recruiting-services" element={<RecruitingServices />} />

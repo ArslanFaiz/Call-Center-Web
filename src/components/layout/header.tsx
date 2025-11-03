@@ -112,20 +112,22 @@ export default function Header() {
           )}
         </nav>
 
-        {/* Right side: Contact + Desktop User */}
+        {/* Right side: Contact + Desktop User/Login */}
         <div className="hidden md:flex items-center gap-4 relative w-auto">
-          {/* Contact Button stays in place */}
           <NavLink to="/contact">
             <Button className="hidden sm:inline-flex cursor-pointer bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
               CONTACT
             </Button>
           </NavLink>
 
-          {/* Spacer to push user icon to the far right */}
-          <div className="flex-1"></div>
-
-          {/* User Icon with outside click close */}
-          {user && (
+          {/* ✅ Show Login if not logged in */}
+          {!user ? (
+            <NavLink to="/login">
+              <Button className="bg-gradient-to-r cursor-pointer from-purple-500 to-pink-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform">
+                LOGIN
+              </Button>
+            </NavLink>
+          ) : (
             <div ref={profileRef} className="relative flex items-center gap-2">
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
@@ -137,7 +139,7 @@ export default function Header() {
 
               {profileOpen && (
                 <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                  <Link to={"/"}>
+                  <Link to={"/login"}>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left px-4 cursor-pointer py-2 text-red-600 hover:bg-red-50 transition-colors"
@@ -205,7 +207,7 @@ export default function Header() {
             )
           )}
 
-          {/* ✅ Contact & Logout side-by-side */}
+          {/* ✅ Contact & Login/Logout in mobile view */}
           <div className="flex items-center justify-between w-full">
             <NavLink to="/contact" onClick={() => setMobileOpen(false)}>
               <Button className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-transform">
@@ -213,8 +215,14 @@ export default function Header() {
               </Button>
             </NavLink>
 
-            {user && (
-              <Link to={"/"}>
+            {!user ? (
+              <NavLink to="/login" onClick={() => setMobileOpen(false)}>
+                <Button className="bg-gradient-to-r from-purple-500 to-pink-400 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-transform">
+                  LOGIN
+                </Button>
+              </NavLink>
+            ) : (
+              <Link to={"/login"}>
                 <button
                   onClick={() => {
                     handleLogout()

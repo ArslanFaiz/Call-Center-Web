@@ -21,7 +21,7 @@ export default function SignUpForm() {
 
   const route = useNavigate();
   const handleNavigate = () => {
-    route("/");
+    route("/login");
   };
 
   const isFormComplete =
@@ -237,7 +237,7 @@ const handleSubmit = (e: React.FormEvent) => {
             <button
               type="submit"
               disabled={!isFormComplete}
-              className={`w-full font-semibold py-3 rounded-lg mt-6 transition duration-200 ${
+              className={`w-full font-semibold cursor-pointer py-3 rounded-lg mt-6 transition duration-200 ${
                 isFormComplete
                   ? "bg-[#7c3aed] hover:bg-[#6d28d9] text-white"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -263,7 +263,7 @@ const handleSubmit = (e: React.FormEvent) => {
           <p className="text-center text-sm text-gray-600 mt-6">
             Already have an account?{" "}
             <Link
-              to="/"
+              to="/login"
               className="font-semibold text-[#7c3aed] hover:text-[#6d28d9]"
             >
               Sign in

@@ -51,7 +51,7 @@ export default function Login() {
     }
 
     if (valid) {
-      route("/home");
+      route("/");
     }
   };
 
@@ -209,7 +209,7 @@ export default function Login() {
             <Button
               type="submit"
               onClick={handleRouting}
-              className="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold transition"
+              className="w-full bg-blue-700 cursor-pointer hover:bg-blue-800 text-white py-3 rounded-lg font-semibold transition"
             >
               Sign In
             </Button>
