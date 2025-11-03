@@ -127,7 +127,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="mb-8 text-center">
             <div className="text-lg sm:text-xl font-semibold text-teal-700 mb-2">
-              CallVerse Global
+              Technacall Canada
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
               Welcome Back

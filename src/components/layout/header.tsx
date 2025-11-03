@@ -56,10 +56,10 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center shadow-md">
-            <span className="text-white font-extrabold text-lg tracking-wide">CG</span>
+            <span className="text-white font-extrabold text-lg tracking-wide">TC</span>
           </div>
           <span className="font-bold text-2xl bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent tracking-tight">
-            CallVerse Global
+            Technacall Canada
           </span>
         </div>
 

@@ -13,10 +13,10 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-extrabold text-xl">CG</span>
+                <span className="text-white font-extrabold text-xl">TC</span>
               </div>
               <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent tracking-wide">
-                CallVerse Global
+                Technacall Canada
               </span>
             </div>
             <p className="text-gray-600 max-w-sm leading-relaxed">
