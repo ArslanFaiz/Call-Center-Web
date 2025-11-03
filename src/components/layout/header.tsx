@@ -45,7 +45,7 @@ export default function Header() {
   }
 
   const filteredNavItems = navItems.filter(
-    (item) => item.name.toLowerCase() !== "blog" && item.name.toLowerCase() !== "portfolio"
+    (item) => item.name.toLowerCase() !== "portfolio"
   )
 
   const servicesOptions = ["Booking Services", "Recruiting Services", "Outsourcing"]

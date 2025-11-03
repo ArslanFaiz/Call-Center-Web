@@ -108,10 +108,9 @@ export const services = [
     }
   ]
   export const navItems = [
-    { name: "HOME", path: "/home" },
+    { name: "HOME", path: "/" },
     { name: "SERVICES" },
     { name: "ABOUT", path: "/about" },
-    { name: "PORTFOLIO", path: "/portfolio" },
     { name: "BLOG", path: "/blog" },
   ]
 export const benefits = [
