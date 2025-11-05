@@ -19,10 +19,11 @@ export default function SignUpForm() {
     setError(""); // clear error on typing
   };
 
-  const route = useNavigate();
-  const handleNavigate = () => {
-    route("/login");
-  };
+  const navigate = useNavigate(); // ✅ rename
+const handleNavigate = () => {
+  navigate("/login"); // ✅ call the navigate function
+};
+
 
   const isFormComplete =
     formData.fullName.trim() !== "" &&
@@ -30,10 +31,9 @@ export default function SignUpForm() {
     formData.password.trim() !== "" &&
     formData.confirmPassword.trim() !== "";
 
-const handleSubmit = (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  // ✅ Validation checks
   if (formData.password.length < 6) {
     setError("Password must be at least 6 characters long.");
     return;
@@ -44,28 +44,39 @@ const handleSubmit = (e: React.FormEvent) => {
     return;
   }
 
-  // ✅ Save full name + user data for HeroSection
-  const user = {
-    name: formData.fullName,
-    email: formData.email,
-  };
-
-  localStorage.setItem("user", JSON.stringify(user));
-
-  // (Optional) Keep signupData if you still want it
-  localStorage.setItem(
-  "signupData",
-  JSON.stringify({
-    name: formData.fullName, // add this
-    email: formData.email,
-    password: formData.password,
-  })
+  try {
+  const response = await fetch(
+  "https://technacallcanadabackend-production.up.railway.app/api/auth/register",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+    }),
+  }
 );
 
 
-  console.log("Sign up:", formData);
-  handleNavigate();
+    const data = await response.json();
+
+    if (!data.success) {
+      setError(data.message || "Something went wrong");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(data.data.user));
+    localStorage.setItem("accessToken", data.data.accessToken);
+    localStorage.setItem("refreshToken", data.data.refreshToken);
+    handleNavigate();
+  } catch (err) {
+    console.error(err);
+    setError("Network error, please try again later.");
+  }
 };
+
+
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">

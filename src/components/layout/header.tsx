@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom"
 import { Menu, X, ChevronDown, User, LogOut } from "lucide-react"
 import { Button } from "../ui/button"
 import { navItems } from "../../constants"
+import api from "../../api/api"
 
 interface UserType {
   name: string
@@ -30,6 +31,25 @@ export default function Header() {
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await api.get("https://technacallcanadabackend-production.up.railway.app/api/auth/profile")
+        if (response.data.success) {
+          const userData = response.data.data.user
+          setUser(userData)
+          localStorage.setItem("user", JSON.stringify(userData))
+        }
+      } catch (err) {
+        console.error("Profile fetch error:", err)
+        setUser(null)
+        localStorage.removeItem("user")
+      }
+    }
+
+    fetchUserProfile()
+  }, [])
+
 
   // Load user from localStorage
   useEffect(() => {
@@ -38,11 +58,26 @@ export default function Header() {
   }, [])
 
   // Logout handler
-  const handleLogout = () => {
-    localStorage.removeItem("user")
-    setUser(null)
-    setProfileOpen(false)
+// Logout handler with API call
+const handleLogout = async () => {
+  const refreshToken = localStorage.getItem("https://technacallcanadabackend-production.up.railway.app/api/auth/refresh-token");
+
+  try {
+    if (refreshToken) {
+      await api.post("https://technacallcanadabackend-production.up.railway.app/api/auth/logout", { refreshToken });
+    }
+  } catch (err) {
+    console.error("Logout API error:", err);
+  } finally {
+    // Always clear local storage
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setUser(null);
+    setProfileOpen(false);
+    window.location.href = "/login"; // redirect to login
   }
+};
 
   const filteredNavItems = navItems.filter(
     (item) => item.name.toLowerCase() !== "portfolio"
